@@ -1,9 +1,20 @@
-“buscar como programar en multi-hilo o multi-core en python, o crear un programa en python de como implementarlo”
+===============================================================================================================
+•	Programación multi-procesador o multi-core con Python o Javascript
+    o	Indicar si es ejecución sincrónica o asincrónica y asociar con teoría vista.
+    o	Mostrar ejemplo práctico.
+•	Cómo implementar un cluster de computadoras en Windows o Linux.
+    o	Qué tecnologías y protocolos subyacentes se utilizan.
+•	Cómo diseñaría un cluster de computadoras en Windows o Linux.
+    o	Qué tecnologías, protocolos o lenguajes utilizaría.
+==================================================================================================================
 
-Diferencias entre multi-hilo y multi-core, son procesos diferentes y son determinados para deferentes procesos.
+    “buscar como programar en multi-hilo o multi-core en python, o crear un programa en python de como implementarlo”
+
+    Diferencias entre multi-hilo y multi-core, son procesos diferentes y son determinados para deferentes procesos.
 Que es sincronización y a sincronización
 
-Multi-hilo
+    **Multi-hilo
+
 Es el proceso en el que múltiples hilos se ejecutan al mismo tiempo en un proceso. En un multiprocesador la planificación involucra tres aspectos interrelacionados: La asignación de procesos a procesadores. El uso de la multiprogramación en cada procesador individual. La activación del proceso.
 Proceso síncrono. Es una ejecución lineal, no cambia hasta que la función halla terminado.
 Por lo que se puede emplear en multiprogramación con hilos y multi hilos
@@ -26,14 +37,16 @@ for I in range (3):
 	t = ThreadClass()
 	t.start()
 
-Salida 
+    Salida
 Thread-1 dice hola en el tiempo: 2018-07-30 12:31:56.951899
 Thread-2 dice hola en el tiempo: 2018-07-30 12:31:56.985901
 
 
-Al importar el módulo threading tenemos acceso a todos sus métodos. Para poder imprimir el tiempo en el que se ejecuta cada proceso hemos importado el módulo datetime.
+    Al importar el módulo threading tenemos acceso a todos sus métodos. Para poder imprimir el tiempo en el que se ejecuta cada proceso hemos importado el módulo datetime.
 En el ejemplo hemos creado una clase llamada "ThreadClass", la cual hereda métodos de la clase "Thread" perteneciente al módulo "threading".
-Multi-core
+
+    **Multi-core
+
 Son múltiples procesos que se ejecutan utilizando una o más procesos. La planificación combinada trata de establecer una nueva estrategia de planificación que reduzca los cambios de contexto y las interferencias generadas con el uso de recursos compartidos entre los núcleos.
 Se da un tipo de sincronización asíncrono, ya que sus múltiples procesos se ejecutan a la ves con tal de completar la ejecución de las tareas., la programación asíncrona consiste en varios procesos diferentes de forma simultánea popara la realización de una o varias tareas o no entre sí.
 Procesos en CPU mejorados:
@@ -41,7 +54,9 @@ Procesos en CPU mejorados:
 •	Formatos de texto
 •	Cambio de imagen
 •	Análisis de datos
+
 Ejemplo Multi-core
+
 from multiprocessing.dummy import Pool as ThreadPool
 import urllib3
 
@@ -55,8 +70,108 @@ pool.close()
 pool.join()
 
 
-Salida:
+    Salida:
 HTTPSConnectionPool(host='www.python.org', port=443)
 HTTPSConnectionPool(host='www.yahoo.com', port=443)
 HTTPSConnectionPool(host='www.google.com', port=443)
 HTTPConnectionPool(host='pythondiario.com', port=80)
+
+    “buscar como programar en multi-hilo o multi-core en Javascript, o crear un programa en
+Javascript de como implementarlo”
+
+    En Javascript, el uso de hilos puede mejorar significativamente el rendimiento de las aplicaciones que realizan
+operaciones intensivas de procesamiento o interacción con el usuario.
+    En Javascript, los hilos se crean mediante la clase Worker, que permite la creación de subprocesos que pueden
+comunicarse con el hilo principal mediante el uso de mensajes.
+
+    **Multi-hilo
+
+    Para crear un hilo en Javascript, se utiliza la clase " Worker ". El siguiente ejemplo muestra cómo crear un hilo
+ y enviar un mensaje al mismo:
+
+
+ // Escuchamos los mensajes del hilo principal
+   onmessage = function(event) {
+     // Obtenemos los datos enviados desde el hilo principal
+     const data = event.data;
+
+     // Realizamos la suma de los números
+     const resultado = data.numero1 + data.numero2;
+
+     // Enviamos la respuesta al hilo principal
+     postMessage(resultado);
+   };
+
+    En este ejemplo, el código del archivo «Informe13.js» escucha los mensajes enviados por el hilo principal y
+realiza la suma de dos números que se reciben en el mensaje. Luego, el resultado se envía de vuelta al
+hilo principal utilizando el método postMessage.
+
+    Es importante destacar que el código en el archivo «worker.js» no tiene acceso al DOM ni a otras funcionalidades
+del navegador que estén limitadas a un solo hilo. Esto se debe a que los hilos secundarios en Javascript no comparten
+la misma memoria que el hilo principal, lo que significa que no pueden acceder ni modificar las mismas variables ni
+objetos en el mismo tiempo que el hilo principal.
+
+    Ahora creamos en el código principal lo siguiente:
+
+// Creamos un nuevo hilo
+const worker = new Worker(‘Informe13.js’);
+
+// Enviamos un mensaje al hilo
+worker.postMessage(‘Hola mundo!’);
+    En el ejemplo anterior, se crea un nuevo hilo utilizando la clase Worker y se envía un mensaje al mismo utilizando
+el método postMessage.
+
+    Recibiendo mensajes desde un hilo Para recibir mensajes desde un hilo en Javascript, se utiliza el método onmessage.
+    El siguiente ejemplo muestra cómo recibir un mensaje desde un hilo y mostrarlo en la consola:
+
+// Creamos un nuevo hilo
+const worker = new Worker(‘Informe13.js’);
+
+// Recibimos un mensaje del hilo
+worker.onmessage = function(event) {
+  console.log(‘Mensaje recibido desde el hilo: ‘ + event.data);
+};
+
+    Comunicacion bidireccional entre hilos
+
+    La comunicación bidireccional entre hilos en Javascript se realiza mediante el uso de mensajes. El siguiente ejemplo
+muestra cómo enviar un mensaje desde el hilo principal al hilo secundario y recibir una respuesta del mismo:
+
+// Creamos un nuevo hilo
+const worker = new Worker(‘Informe13.js’);
+
+// Enviamos un mensaje al hilo
+worker.postMessage(‘Hola mundo!’);
+
+// Recibimos un mensaje del hilo
+worker.onmessage = function(event) {
+  console.log(‘Respuesta recibida desde el hilo: ‘ + event.data);
+};
+
+// Enviamos una respuesta al hilo
+worker.postMessage(‘Hola de vuelta!’);
+
+
+
+    Cómo implementar un cluster de computadoras en Linux
+        Qué tecnologías y protocolos subyacentes se utilizan.
+
+Tecnologias de un cluster en Linux
+Linux tiene tres tipos de clusters de acuerdo a su tilidad:
+de alto rendimiento, de alta disponibilidad y de balanceo
+de carga
+
+    Alto Rendimiento
+
+
+
+    Alta Disponibilidad
+
+
+
+    Balanceo de Carga
+
+
+    **Protocolos
+    TCP/IP/UDP
+
