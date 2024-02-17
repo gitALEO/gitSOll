@@ -1,0 +1,191 @@
+Programación en tiempo real
+El objetivo principal en la programación en tiempo real es lograr que los sistemas limitados o
+condicionados por problemas de tiempo funcionen de forma correcta e interaccionen con su mundo
+físico, del cual reciben estímulos
+
+Características de Sistema Operativo en tiempo real
+Un Sistema Operativo en Tiempo Real es pequeño, rápido, receptivo y determinista. Esto significa
+que ejecutará tareas de manera rápida y eficiente, respondiendo como se espera cada vez. Debido
+a la importancia de su dispositivo host, la infraestructura RTOS es más segura y es menos probable
+que se bloquee o falle.
+
+1. Determinismo
+2. Capacidad de respuesta
+3. Control de usuario
+4. Fiabilidad
+5. Operación suave contra fallas
+
+Determinismo
+Realiza operaciones en instantes de tiempo fijos predeterminados o dentro de intervalos de tiempo
+predeterminados. Cuando múltiples procesos compiten por recursos y tiempo de procesador, ningún
+sistema puede ser totalmente determinista. En un sistema operativo de tiempo real, las solicitudes
+de servicio de los procesos son dirigidas por eventos externos y temporizaciones. El grado en el que
+ un sistema operativo puede satisfacer de manera determinista las solicitudes depende, primero, de
+ la velocidad a la que es capaz de responder a las interrupciones y, segundo, de si el sistema tiene
+  capacidad suficiente para manejar todas las solicitudes dentro del tiempo requerido. En sistemas
+  operativos no de tiempo real, este retardo puede estar en el rango de decenas a cientos de
+  milisegundos, mientras que en un sistema operativo de tiempo real este retardo puede tener un
+  límite superior en algún punto entre los pocos microsegundos y el milisegundo.
+
+Capacidad de respuesta (Reactivo)
+Cuánto tiempo tarda el sistema operativo, después del reconocimiento, en servir la interrupción.
+La reactividad incluye los siguientes aspectos: 1. La cantidad de tiempo necesario para manejar
+inicialmente la interrupción y comenzar a ejecutar la rutina de servicio de la interrupción (RSI).
+Si la ejecución de la RSI necesita un cambio de proceso, entonces el retardo será mayor que si la
+RSI puede ser ejecutada dentro del contexto del proceso actual. 2. La cantidad de tiempo necesario
+para realizar la RSI. Esto depende, generalmente, de la plataforma hardware. 3. El efecto del
+anidamiento de interrupciones. Si una RSI puede ser interrumpida por la llegada de otra interrupción,
+ entonces el servicio se retrasará. El determinismo y la reactividad juntos conforman el tiempo de
+ respuesta a eventos externos. Los requisitos de tiempo de respuesta son críticos para los sistemas
+ de tiempo real, dado que estos sistemas deben cumplir requisitos de tiempo impuestos por individuos,
+  dispositivos o flujos de datos ex- ternos al sistema.
+
+Control de usuario
+En un sistema operativo no de tiempo real, el usuario no tiene control sobre la función de
+planificación o bien el sistema operativo sólo puede proporcionar una guía burda, como la agrupación
+ de usuarios en más de una clase de prioridad. En un sistema de tiempo real es esencial permitirle
+ al usuario un control de grano fino sobre la prioridad de la tarea. El usuario debe ser capaz de
+ distinguir entre tareas duras y suaves y de especificar prioridades relativas dentro de cada clase
+ . Un sistema de tiempo real puede también permitirle al usuario especificar características como
+  el uso de paginación en los procesos, qué procesos deben residir siempre en memoria principal, qué
+   algoritmos de transferencia a disco deben utilizarse, qué derechos tienen los procesos de las
+   varias bandas de prioridad, etcétera.
+
+Fiabilidad
+Un sistema de tiempo real ha de responder y controlar eventos en tiempo real. La pérdida o
+degradación de sus prestaciones puede tener consecuencias catastróficas.
+Operación suave de fallos
+Se refiere a la habilidad del sistema de fallar de tal manera que se preserve tanta capacidad y
+datos como sea posible. Un sistema de tiempo real intentará o bien corregir el problema o bien
+minimizar sus efectos continuando, en todo caso, en ejecución. Un sistema de tiempo real es estable
+ si, en los casos en los que sea imposible cumplir los plazos de todas las tareas, el sistema
+ cumplirá los plazos de sus tareas más críticas, de más alta prioridad, aunque los plazos de algunas
+  tareas menos críticas no se satisfagan. Para cumplir los requisitos precedentes, los sistemas
+  operativos de tiempo real incluyen de forma representativa las siguientes características.
+
+•	Cambio de proceso o hilo rápido.
+•	Pequeño tamaño (que está asociado con funcionalidades mínimas).
+•	Capacidad para responder rápidamente a interrupciones externas.
+•	Multitarea con herramientas para la comunicación entre procesos como semáforos, señales y eventos.
+•	Utilización de ficheros secuenciales especiales que pueden acumular datos a alta velocidad.
+•	Planificación expulsiva basada en prioridades.
+•	Minimización de los intervalos durante los cuales se deshabilitan las interrupciones.
+•	Primitivas para retardar tareas durante una cantidad dada de tiempo y para parar/retomar tareas.
+•	Alarmas y temporizaciones especiales.
+Lo más importante de un sistema de tiempo real es el planificador de tareas a corto plazo. En el
+diseño de tal planificador, la equidad y la minimización del tiempo medio de respuesta no son lo más
+ importante. Lo que es importante es que todas las tareas de tiempo real duro se completen
+ (o comiencen) en su plazo y que tantas tareas de tiempo real suave como sea posible también se
+ completen (o comiencen) en su plazo
+
+Wikipedia. Sistemas operativos en tiempo real
+Planificacion en tiempo real
+En un programa concurrente, no es necesario especificar el orden exacto con el que se ejecutan los
+procesos. Se utilizan primitivas de sincronización para imponer restricciones locales en el orden de
+ ejecución, como pueden ser las primitivas de exclusión mutua, pero en este caso el comportamiento
+ temporal del programa se caracteriza por ser no determinista. Si el programa es correcto entonces
+ la funcionalidad de sus salidas será la misma pase lo que pase en su comportamiento interno o en los
+  detalles de la implementación. Por ejemplo, cinco procesos independientes se pueden ejecutar de
+  forma no preemptiva en 120 ordenes diferentes (5!). En un sistema multiprocesador o en
+  comportamiento preemptivo existen un número mucho mayor de posibilidades. Mientras que las salidas
+   del programa serán las mismas en todas las posibles combinaciones de tareas, el comportamiento
+   temporal puede varias considerablemente. Si uno de los cinco procesos tiene un plazo de
+   finalización breve, entonces posiblemente sólo las combinaciones en las que él se ejecute primero
+    serán válidas podrán satisfacer los requerimientos temporales. Un sistema de tiempo real
+    necesita restringir el indeterminismo que aparece en los sistemas de tiempo compartido,
+    seleccionando solo el orden de ejecución de las tareas que cumplan las restricciones temporales.
+     A este proceso se le llama planificación.
+
+Conceptos
+Tipos de tareas
+En lo sucesivo consideraremos las tareas como una sucesión de trabajos que se repiten. Cuando la
+tarea comienza a ejecutarse comenzará a ejecutarse su primer trabajo y, cuando el último trabajo
+finalice, terminará la ejecución de la tarea. Normalmente, no todas las tareas tienen la misma
+importancia a la hora de cumplir los plazos de ejecución. En un mismo sistema, simultáneamente
+pueden existir tareas críticas y tareas con plazos de ejecución menos críticas, o también tareas
+sin plazos de ejecución. Distinguiremos entre tres tipos de tareas, según sus características
+temporales: - Tareas periódicas. Su ejecución se realiza periódicamente. Sus trabajos entran en
+ejecución en un periodo constante. A lo largo de toda la teoría que vamos a ver, supondremos que
+todas las tareas con restricciones temporales son periódicas. - Tareas esporádicas. Son tareas que
+al igual que las tareas periódicas, tienen un plazo de finalización estricto, pero no se ejecutan de
+ forma periódica sino esporádicamente. Se tratarán como tareas periódicas suponiendo que existe un
+ tiempo mínimo entre dos activaciones consecutivas. Este tiempo se tomará como el periodo
+ “equivalente” de la tarea. 3 - Tareas aperiódicas. Al contrario que las tareas periódicas, no
+ tienen plazo de finalización, o si lo tienen, no es de obligado cumplimiento. Se podría hacer
+ otra clasificación de las tareas de tiempo real en base a sus características semánticas: - Tareas
+ críticas. El fallo de una de estas tareas (por no ejecutarse a tiempo) puede ser catastrófico para
+  el sistema. - Tareas opcionales. Si se retrasa su ejecución no afecta a la seguridad del sistema.
+  Las funciones que suelen realizar son: - Monitorización del sistema - Tareas de mantenimiento -
+  Refina el resultado obtenido por tareas críticas Las tareas opcionales se pueden dividir en dos
+  grupos: - Opcionales con plazo (hard aperiodic). Disponen de un tiempo de ejecución recomendado.
+  - Opcionales sin plazo (soft aperiodic). Algunas políticas de planificación tienen en cuenta esta
+   distinción e intentan cumplir los plazos de las tareas opcionales con plazo, siempre que no haya
+    sobrecarga por parte de las tareas críticas o por el resto de tareas opcionales con pla zo.
+
+Parámetros
+En la descripción de un sistema concurrente de tiempo real es común utilizar una serie de parámetros
+ que afectan al comportamiento temporal. Vamos a seguir suponiendo que un sistema de tiempo real
+ está formado por un conjunto de tareas periódicas, o esporádicas convertidas en periódicas. En
+ esta situación, estos parámetros son: N: Número de tareas en el sistema Pi: Periodo de activación
+ Ci: Tiempo máximo de ejecución Di: Plazo máximo de terminación. Ri: Tiempo de respuesta máximo.
+ Es el tiempo desde que la tarea se activa hasta que termina realmente a ejecutarse. Pri: Prioridad
+ de la tarea (convenio: mayor valor, menor prioridad) Si: Desfase respecto al momento inicial 4 En
+  las tareas esporádicas cabe señalar que el periodo Pi se entiende como el tiempo mínimo entre dos
+   activaciones consecutivas. La carga del sistema será menos que la que da esta suposición, pero
+    esto nos asegura que si las restricciones temporales se cumplen con este valor para su periodo,
+     también se cumplirá cuando el tiempo entre activaciones sea mayor. El desfase respecto al
+     momento inicial Si solo tiene sentido para la primera activación, en el instante inicial del
+     sistema. Veremos más adelante que el momento inicial juega un papel importante a la hora de
+     estudiar la planificabilidad de un sistema
+
+
+Tiempo real crítico y opcional
+Con estas definiciones podemos profundizar más en los conceptos de tiempo real estricto y tiempo
+real opcional. Vamos a definir la tardanza de una tarea como la diferencia entre el tiempo de
+respuesta y el plazo de ejecución de una tarea. ti = Ri - Di Diremos que una tarea se ejecuta de
+forma tardía si su tardanza se hace positiva, es decir si finaliza su ejecución después de haber
+vencido su plazo de ejecución. En los sistemas de tiempo real opcional un resultado puede seguir
+siendo útil, aún cuando este se obtenga de forma tardía. Podríamos expresar la utilidad de un
+resultado en función de su tardanza, obteniendo una gráfica de la forma:
+
+Esta sería una representación típica en una tarea con plazo de ejecución opcional. Sin embargo, en
+las tareas de tiempo real crítico la utilidad desciende rápidamente al hacerse positiva la tardanza.
+
+De esta forma, una tarea de tiempo real crítico será aquella en que la utilidad se hace 0 cuando la
+ tardanza se hace positiva, a diferencia de las tareas de tiempo real opcional en la que se mantiene
+  mayor que cero cuando la tardanza se hace positiva. Sin embargo, la utilidad es una magnitud
+  difícil de medir en el resultado de una tarea y es difícil de validar. Otra forma de representar
+   el comportamiento de un sistema es representando la probabilidad de la obtención de una respuesta
+    en función de la tardanza. La representación tomará la forma de una campana de Gauss alrededor
+    del valor medio en que la tarea ofrece la respuesta. Definida de esta forma, la utilidad se
+    puede expresar en forma de una magnitud medible, simplemente haciendo una estadística en el
+    funcionamiento de nuestro sistema. La utilidad se expresaría en forma de un valor de la
+    probabilidad de que el tiempo de respuesta sea menor o igual a la cota temporal (área de la
+     campana de Gauss a la izquierda de la cota). Un sistema de tiempo real crítico sería aquel en
+     =que la probabilidad de que se cumplan todas las cotas temporales es 1. Teniendo en cuenta
+     todos estos criterios, en los sistemas de tiempo real las restricciones temporales se pueden
+     expresar en varios términos, por ejemplo: 1. Restricciones deterministas. Por ejemplo, el
+     resultado que proporciona una tarea se debe obtener siempre antes de 50 ms. 2. Restricciones
+     probabilísticas. Por ejemplo, la probabilidad de que el tiempo de respuesta exceda de 50 ms.
+     debe ser inferior a 0.2. 3. Restricciones es términos de una función de utilidad. Por ejemplo,
+      la utilidad de los resultados que proporciona una tarea debe ser 0.8 o superior. 6 En la
+      práctica, las restricciones temporales críticas raramente se expresan en los dos últimos
+      términos, mientras que las restricciones temporales opcionales si suelen expresarse en
+      términos de probabilidad o de utilidad. Por ejemplo, supongamos un sistema telefónico en el
+      que, tras marcar el número con el que deseamos hablar, la conexión se debe establecer en un
+      tiempo que no sea excesivo. Este sistema no requiere un cumplimiento estricto del tiempo
+      máximo de respuesta, sino que puede ser suficiente un comportamiento expresado en términos de
+       ]probabilidades. Así, el cliente puede quedar satisfecho si la conexión se establece antes
+       de 10 seg. en el 95% de los casos y antes de 20 seg. en el 99.95% de las llamadas.
+
+Otra característica que diferencia a los sistemas de tiempo real crítico es que estos requieren
+ tener una seguridad en que la tardanza nunca será positiva, pues el sistema ya no sería útil. Por
+  tanto, se necesita de una demostración que asegure que esto va a ser siempre así. Por el contrario
+  , los sistemas de tiempo real opcional no necesitan de una demostración tan estricta pues, por la
+  definición anterior, puede seguir dando resultados válidos aunque se incumplan ocasionalmente los
+  requerimientos temporales. En lo sucesivo, consideraremos sólo sistemas de tiempos real crítico,
+   o a lo sumo sistemas híbridos en los que conviven tareas con restricciones temporales críticas y
+   opcionales.
+
+Dead Line Scheduling
+Priority Inversion

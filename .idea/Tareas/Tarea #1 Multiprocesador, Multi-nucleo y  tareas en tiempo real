@@ -1,0 +1,309 @@
+Multi-processor, Multicore, and real Time Scheduling
+•	Planificacion de Multipeocesador y Multi núcleo
+o	Planificación de Multiprocesador:
+En un multiprocesador la planificación involucra tres aspectos interrelacionados: La asignación de
+procesos a procesadores. El uso de la multiprogramación en cada procesador individual. La activación
+ del proceso, propiamente dicha
+o	Planificación en Multi núcleo:
+La planificación combinada trata de establecer una nueva estrategia de planificación que reduzca los
+ cambios de contexto y las interferencias generadas con el uso de recursos compartidos entre los núcleos.
+
+Clasificación de sistemas multiprocesador:
+-	Multiprocesador o clúster débilmente acoplado o distribuido:
+-	Procesadores funcionalmente especializados
+-	Multiprocesador estrechamente acoplado
+
+Granularidad
+La granularidad se define como el número de elementos de proceso que componen un computador paralelo.
+
+el paralelismo independiente, de gran grueso y de grano
+muy grueso puedan verse respaldados tanto en un monoprocesador
+multiprogramado como en un multiprocesador con poco o ningún impacto
+sobre la función de planificación, se debe revisar la planificación
+cuando se trata de la planificación de hilos. Puesto que los diversos
+hilos de una planificación interactúan de forma muy frecuente, las
+decisiones de planificación que involucran a un hilo pueden afectar al
+rendimiento de la aplicación completa.
+ Una granularidad fina consiste en el empleo de muchos elementos de proceso de poca potencia. En
+ este caso, el grado de paralelismo es máximo.
+ Los computadores de grano fino exigen técnicas de programación y algoritmos que potencien el
+ paralelismo. Una máquina de grano grueso consta de pocos elementos procesadores, pero de alta
+ potencia cada uno.
+
+Paralelismo de Grano Medio: Una aplicación puede ser
+efectivamente implementada como una colección de hebras con un
+paralelismo simple. En este caso, el paralelismo potencial de una
+aplicación debe ser explícitamente especificado por el programador.
+Generalmente se necesitará un alto grado de coordinación e
+interacción entre las hebras de una aplicación, levando a un nivel
+medio de sincronización.
+Paralelismo de Grano Grueso y muy grueso: Con esta clase de
+paralelismo existe sincronización entre procesos pero a nivel muy
+grosero. Esta clase de situación es fácilmente entendible como un
+grupo de procesos concurrentes ejecutándose en un monoprocesador
+multiprogramado y puede ser soportado en un multiprocesador con un
+pequeño o no cambio al software del usuario.
+Un ejemplo simple de una aplicación que puede aprovechar la presencia
+de un microprocesador. Los autores han desarrollado un programa que
+recibe una especificación de los archivos que necesitan ser
+recopilados para reconstruir una parte del software y determinan
+cuales de estas compilaciones (normalmente todas) pueden ejecutarse
+simultáneamente el programa crea entonces un proceso para cada
+compilación paralela. Los resultados indican que la aceleración en un
+multiprocesador supera la que realmente podría esperarse
+añadiendo simplemente el número de procesadores usados, debido a las
+sinergias en las caches del disco y compartir el código del
+compilador, que se carga en la memoria solo una vez. En general, cualquier conjunto de procesos
+concurrentes que necesiten comunicarse o sincronizarse puede aprovechar el uso de las
+arquitecturas de los multiprocesadores.
+ Un sistema distribuido puede ofrecer un soporte adecuado en caso de interacciones poco frecuentes
+entre los procesos. Sin embargo, si la interacción es algo más
+frecuente, el sobrecargo de comunicaciones a través de la red puede
+anular parte de  la posible aceleración. En este caso, la organización
+del multiprocesador ofrece el soporte más efectivo.
+Ø Paralelismo Independiente: Entre los procesos no existe una
+sincronización explícita. Cada uno representa una separación, una
+aplicación independiente. El uso típico de este tipo de paralelismo es
+en los sistemas de tiempo compartido.
+
+Cada usuario está ejecutando una aplicación en particular, como un
+procesador de textos o una hoja de cálculo. El multiprocesador ofrece
+el mismo servicio que un procesador multiprogramado. Como hay más de
+un procesador disponible, el tiempo medio de respuesta a los usuarios
+será menor.
+
+Es posible alcanzar un aumento similar de rendimiento proporcionado a
+cada usuario un computador personal o una estación de trabajo. Si van
+a compartirse archivos o alguna información, entonces se deben
+conectar los sistemas individuales en un sistema distribuido
+soportado por una red. Por otro lado, un único sistema multiprocesador
+ofrece, en muchos casos, un coste mejor que un sistema distribuido,
+pudiendo así mejorar los discos y otros periféricos.
+Romero R. Google Groups.
+
+
+Ilustración 1 Procesos de sincronizaci9on y granularidad
+Problemas de diseño
+Las multitareas en un multiprocesador tienen tres problemas:
+1.	La asignación de procesos para procesadores
+2.	Uso de multiprogramación en procesadores individuales
+3.	El envío real de procesos
+
+La asignación de procesos para procesadores
+•	Trata cada proceso como un recurso colectivo y asigna procesos a procesadores por demanda.
+•	Un proceso se vincula permanentemente a un procesador
+•	Estrategia conocida como planificación de grupo o pandilla (gang).
+•	Dedica una cola a corto plazo por cada procesador.
+•	Menos sobrecarga.
+•	El procesador puede estar ocioso mientras otro procesador tienen trabajo acumulado.
+•	Cola global
+•	Procesos planificados sobre cualquier procesador disponible.
+•	Arquitectura maestro/esclavo
+•	Las funciones clave del núcleo ejecutan siempre en un procesador concreto.
+•	El maestro es responsable de la planificación de trabajos.
+•	El esclavo envía una solicitud al maestro.
+•	Desventajas
+•	Un fallo en el maestro hace que falle el sistema completo.
+•	El maestro puede llegar a ser un cuello de botella para el rendimiento del sistema.
+•	Arquitecturas camaradas
+•	El núcleo puede ejecutarse en cualquier procesador.
+•	Cada procesador se auto-planifica.
+•	Complica el sistema operativo
+•	Asegura que dos procesadores no escogen el mismo proceso.
+Worpress. Asignación de procesos a procesadores
+
+El uso de la multiprogramación en procesadores individuales
+
+
+Se distinguen por sus habilidades para poder soportar la ejecucion de dos o mas trabajos activos
+(que se estan ejecutado) al mismo tiempo. Esto trae como resultado que la Unidad Central de
+Procesamiento (UCP) siempre tenga alguna tarea que ejecutar, aprovechando al maximo su utilizacion.
+Su objetivo es tener a varias tareas en la memoria principal, de manera que cada uno esta usando
+el procesador, o un procesador distinto, es decir, involucra maquinas con mas de una UCP.
+Sistemas Operativos como UNIX, Windows 95, Windows 98, Windows NT, MAC-OS, OS/2, soportan la
+multitarea.
+Las caracteristicas de un Sistema Operativo de multiprogramacion o multitarea son las siguientes:
+•	    Mejora productividad del sistema y utilizacion de recursos.
+•	    Multiplexa recursos entre varios programas.
+•	    Generalmente soportan multiples usuarios (multiusuarios).
+•	    Proporcionan facilidades para mantener el entorno de usuarios individuales.
+•	    Requieren validacion de usuario para seguridad y proteccion.
+•	    Proporcionan contabilidad del uso de los recursos por parte de los usuarios.
+•	    Multitarea sin soporte multiusuario se encuentra en algunos computadores personales o en
+sistemas de tiempo real.
+•	    Sistemas multiprocesadores son sistemas multitareas por definicion  ya que  soportan la
+ ejecucion simultanea de multiples tareas sobre diferentes procesadores.
+•	    En general, los sistemas de multiprogramacion se caracterizan por tener multiples programas
+ activos compitiendo por los recursos del sistema: procesador, memoria, dispositivos perifericos.
+
+
+Planificacion de procesos
+s una herramienta para que el sistema operativo determine el orden en que se adecua el procesador a
+los procesos que lo vayan necesitando y a las políticas que se utilizarán en la eficiencia del
+tiempo esperado en el sistema.
+
+Algoritmos de planificación
+•	Primero en Entrar-Primero en Salir
+También denominado FCFS (First Come First Served), es un algoritmo que utiliza una fila de procesos
+ determinando el funcionamiento de cada proceso por el orden de llegada. Al llegar el proceso es
+ puesto detrás del que llegó antes que él. Se resalta que al comenzar a ejecutarse un proceso, su
+ ejecución no es interrumpida hasta terminar.
+
+•	Prioridad al más corto
+Conocido como SJF (Shortest Job First). Este proceso se distingue porque cuando un proceso se
+encuentra en ejecución, voluntariamente cambia de estado, es decir que el tiempo de ejecución del
+proceso no es determinado. Por lo cual cada proceso tiene una asignación de tiempo cuando vuelve a
+ser ejecutado y va ejecutando el proceso con la menor cantidad de tiempo asignada. Al encontrarse
+que dos algoritmos poseen la misma cantidad de tiempo, se utilizará el algoritmo FCFS.
+
+•	Planificación por turno rotatorio
+Llamado Round Robin, es un algoritmo donde se determina el mismo tiempo para la ejecución de todos
+los procesos. Si un proceso no puede ejecutarse por completo en el tiempo asignado su ejecución
+será después de la ejecución de todos los procesos que se ejecuten con el tiempo asignado. Este
+algoritmo se fundamenta en FCFS y ordena la cola de procesos circularmente cuando se hallan en
+estado de listos.
+
+•	Planificación por prioridad
+Esta planificación se caracteriza porque a cada proceso se le asigna una prioridad y se continúan
+con un criterio determinado. Los procesos serán atendidos de acuerdo con la prioridad determinada.
+
+•	Planificación garantizada
+En esta planificación el sistema se enfoca en la cantidad de usuarios que debe atender. Donde en
+un número n de usuarios se asignará a cada usuario 1/n de tiempo de ejecución.
+
+•	Planificación de Colas Múltiples
+Derivado de MQS (Multilevel Queue Scheduling). Es un algoritmo donde la cola de procesos en estado
+de listos se divide en varias colas más pequeñas. Los procesos se clasifican a partir de un criterio
+ que determina en qué cola se ubicará el proceso cuando se encuentre en estado de listo.
+
+Tipos de planificación
+La planificación de procesos busca la eficacia y la equidad de los tiempos, tanto de respuesta como
+de regreso, además del rendimiento.
+En la planificación de procesos podemos encontrar tres tipos principales:
+
+•	Planificación a largo plazo
+En esta planificación se determina cuáles procesos serán los siguientes en ser ejecutados. La toma
+de decisiones es realizada bajo los requisitos de los procesos previamente anunciados y los que se
+encuentran libres en el sistema luego de finalizar otro proceso.
+
+•	Planificación a mediano plazo
+En la Planificación a mediano plazo se decide cuáles tiempos deben ser bloqueados y en que momento
+determinado ya sea por la falta o la saturación de algún recurso o porque la solicitud exigida no
+puede atenderse en el momento. La toma de decisiones es efectuada de acuerdo a la entrada y a la
+salida de los procesos que se encuentran en estado bloqueado.
+
+•	Planificación a corto plazo
+En este tipo de planificación se determina en cada instante el procedimiento para compartir al
+equipo que recursos necesitan todos los procesos. Es de resaltar que este tipo de planificación es
+ejecutado decenas de veces por segundo.
+Se resalta que en la planificación de procesos se debe tener en cuenta los tiempos que se pueden
+calcular, tales como: el tiempo de espera medio, el tiempo de retorno del proceso y el tiempo de
+retorno medio.
+Mauro Sastoque Campos
+Revista Virtual Pro
+
+subprocesos
+Cada subproceso tiene una prioridad de subproceso asignada a él. A los subprocesos creados en Common
+ Language Runtime se les asigna inicialmente la prioridad de ThreadPriority.Normal. Los subprocesos
+ creados fuera del tiempo de ejecución mantienen la prioridad que tenían antes de entrar en el
+ entorno administrado. Puede obtener o establecer la prioridad de cualquier subproceso con la
+ propiedad Thread.Priority.
+Los subprocesos están programados para ejecutarse según su prioridad. Aunque los subprocesos se
+ejecutan durante el tiempo de ejecución, el sistema operativo asigna intervalos de tiempo de
+procesador a todos los subprocesos. Los detalles del algoritmo de programación utilizado para
+determinar el orden en que se ejecutan los subprocesos varían en función de cada sistema operativo.
+ En algunos sistemas operativos, el subproceso con la prioridad más alta (de entre los subprocesos
+ que se pueden ejecutar) está programado siempre para que se ejecute primero. Si hay disponibles
+ varios subprocesos con la misma prioridad, el programador recorre los subprocesos con dicha
+ prioridad, dando a cada subproceso un intervalo de tiempo fijo para su ejecución. Siempre que un
+ subproceso con una prioridad más alta esté disponible para su ejecución, los subprocesos con menor
+  prioridad no se llegan a ejecutar. Si no hay más subprocesos ejecutables con una prioridad
+  determinada, el programador pasa a la siguiente prioridad más baja y programa la ejecución de los
+   subprocesos que tienen esa prioridad. Si un subproceso de prioridad superior se convierte en
+   ejecutable, se relega el subproceso de menor prioridad y el subproceso con mayor prioridad se
+   puede ejecutar una vez más. Sobre todo, el sistema operativo también puede ajustar las
+   prioridades de los subprocesos de forma dinámica como una interfaz de usuario de la aplicación
+   se mueve entre el primer y segundo plano. Otros sistemas operativos pueden optar por utilizar un
+   algoritmo de programación diferente.
+
+Microsoft. Programación de subprocesos.
+Load sharing
+In simple terms, load sharing is the process at which a facility operates multiple generators at the
+ same time. In technical terms, load sharing is the proportional division of active power and
+ reactive power between generator sets. Parallel operation and load sharing are closely related.
+
+Es quizás el enfoque  más simple y el que se transfiere más directamente desde un entorno
+monoprocesador.
+
+•	La carga se distribuye uniformemente entre los procesadores, asegurando que ningún procesador
+esta inactivo mientras hallan trabajo disponible para realizar
+
+•	Ninguna planificación centralizada es requerida, cuando un procesador esta disponible, la rutina
+ de programacino del sistema operativo se esta ejecutando para seleccionar el siguiente subproceso.
+
+•	The global queue can be organized, including priority-based schemes and schemes that consider
+execution history or anticipated processing demands.
+
+Carga agrupada
+El concepto de programar de procesos simultaneos de un conjunto de procesos es anterior al uso.
+•	Si los procesos en el grupo están relacionados o coordinados de alguna manera, el bloqueo de
+sincronización puede reducirse, puede ser necesaria menos conmutación de procesos y
+
+•	el rendimiento aumentará.
+
+•	Una única decisión de programación afecta a varios procesadores y procesos en
+
+•	una vez, lo que reduce los gastos generales de programación.
+
+Asignación de procesos dedicados
+Asignacion dinámica
+Programacion de subprocesos multinúcleo
+La programación multiproceso es una forma especializada de programación concurrente, que implica la
+ejecución de múltiples subprocesos dentro de un único proceso o aplicación, lo que permite una
+utilización eficiente de los recursos del sistema y un mejor rendimiento. Este paradigma de
+programación permite que se ejecuten múltiples subprocesos simultáneamente en estructuras de datos
+compartidas mientras se ejecutan tareas separadas, lo que en última instancia permite que las
+aplicaciones o algoritmos hagan un mejor uso de los procesadores multinúcleo, al tiempo que
+garantiza la capacidad de respuesta y la eficiencia.
+
+En la programación tradicional de un solo subproceso, un programa ejecuta sus instrucciones
+secuencialmente, una tras otra, y solo puede realizar una tarea a la vez. Esto puede provocar una
+subutilización de los recursos del sistema y una disminución del rendimiento. El desarrollo de
+procesadores multinúcleo y arquitecturas paralelas ha requerido la adopción de técnicas de
+programación concurrente, como multihilo, para optimizar la utilización de la potencia de
+procesamiento disponible y gestionar mejor los procesos y eventos concurrentes dentro de una
+aplicación.
+
+En un entorno multiproceso, los subprocesos son las entidades más pequeñas que el sistema operativo
+puede programar y ejecutar de forma independiente. Cada subproceso tiene su propio contador de
+programa, pila y datos locales, pero comparte su espacio de memoria, datos globales y recursos del
+sistema con otros subprocesos dentro del mismo proceso. Esta arquitectura de memoria compartida
+permite una comunicación eficiente entre subprocesos y les permite trabajar de forma cooperativa
+hacia un objetivo común.
+
+La implementación de una aplicación multiproceso implica varios desafíos, incluido el manejo
+adecuado de las estructuras de datos compartidas, la sincronización de subprocesos y la contención
+de recursos. El modelo de memoria compartida puede generar inconsistencias en los datos y
+condiciones de carrera, que ocurren cuando dos o más subprocesos acceden a los mismos datos
+simultáneamente, lo que genera un comportamiento inesperado del programa. Para manejar este problema,
+ los programadores utilizan varios mecanismos de sincronización, como bloqueos, semáforos y barreras,
+  para asegurar el acceso exclusivo a los recursos compartidos y garantizar que se acceda a los datos
+   de manera consistente y confiable.
+
+La programación multiproceso puede ofrecer varias ventajas, incluida una mayor capacidad de respuesta,
+ una mejor utilización de los recursos y una mayor velocidad computacional. En una aplicación
+ multiproceso, las tareas en segundo plano se pueden ejecutar simultáneamente, sin afectar la
+ capacidad de respuesta de la aplicación o el comportamiento de la interfaz de usuario. Además, una
+ aplicación multiproceso puede distribuir eficientemente su carga de trabajo entre múltiples núcleos,
+  lo que le permite ejecutar tareas más rápidas y completarlas en menos tiempo.
+
+Sin embargo, la programación multiproceso también tiene sus inconvenientes, como una mayor
+complejidad, la posibilidad de errores relacionados con la concurrencia y problemas de escalabilidad.
+ Se requiere que los programadores tengan un buen conocimiento de la sincronización de subprocesos,
+ la protección de datos compartidos y la prevención de interbloqueos, ya que la depuración de
+ aplicaciones multiproceso puede ser un desafío debido a su naturaleza no determinista. Además, la
+ programación multiproceso puede encontrar problemas de escalabilidad en sistemas con una gran
+ cantidad de núcleos, ya que la sobrecarga de comunicación y sincronización puede limitar las
+ ganancias de rendimiento logradas.
+
+AppMaster. Programación de multipreocesos
