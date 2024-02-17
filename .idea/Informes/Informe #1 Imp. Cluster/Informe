@@ -11,7 +11,7 @@ Linux tiene tres tipos de clusters de acuerdo a su utilidad:
 de alto rendimiento, de alta disponibilidad y de balanceo
 de carga
 
-Nosa vamos a enfocar en un cluster de Alta disponibilidad
+Nos vamos a enfocar en un cluster de Alta disponibilidad
     Alta Disponibilidad
 
 La alta disponibilidad es un sistema en clúster que ofrece fiabilidad, escalabilidad y
@@ -37,7 +37,7 @@ servicios de alta disponibilidad..
     **Un clúster está compuesto por dos o más computadores
     que trabajan juntos para ejecutar una tarea
 
-Compoinentes
+Componentes
 Resilencia de aplicacinoes
 Niveles de resilencia de aplicaciones
 Resilencia de datos
