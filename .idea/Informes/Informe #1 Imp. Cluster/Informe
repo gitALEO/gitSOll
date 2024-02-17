@@ -5,8 +5,6 @@
     Cómo implementar un cluster de computadoras en Linux
         Qué tecnologías y protocolos subyacentes se utilizan.
 
-    Que quiere el profe
-    Que le describa con dispositivos,
 
 Tecnologias de un cluster en Linux
 Linux tiene tres tipos de clusters de acuerdo a su utilidad:
@@ -30,7 +28,7 @@ integridad de los datos cuando un nodo reciba el control del servicio desde otro
  externos al clúster.
  (Los clústeres de alta disponibilidad también se conocen como clústeres de conmutación.) La adición
   de alta disponibilidad proporciona agrupamiento a través de su componente de administración de
-servicios de alta disponibilidad, rgmanager..
+servicios de alta disponibilidad..
 
     **Protocolos
     TCP/IP/UDP
@@ -38,3 +36,12 @@ servicios de alta disponibilidad, rgmanager..
     Fundamentos de un cluster
     **Un clúster está compuesto por dos o más computadores
     que trabajan juntos para ejecutar una tarea
+
+Compoinentes
+Resilencia de aplicacinoes
+Niveles de resilencia de aplicaciones
+Resilencia de datos
+Resilencia del entorno
+Simplicidad
+Links
+https://www.ibm.com/docs/es/i/7.5?topic=overview-components-high-availability
