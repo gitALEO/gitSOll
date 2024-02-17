@@ -2,3 +2,89 @@
 •	Cómo diseñaría un cluster de computadoras en Windows o Linux.
     o	Qué tecnologías, protocolos o lenguajes utilizaría.
 ====================================================================================================
+#1 Hardware
+
+    Procesador	Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz   1.20 GHz
+    RAM instalada	8,00 GB (7,69 GB utilizable)
+    Tipo de sistema	Sistema operativo de 64 bits, procesador x64
+
+#2 Sistema Operativo
+
+    Linux: Ubuntu Server 22.04.3 LTS
+
+#3 Almacenamieto
+
+    El almacenamiento del cluster es el disco duro que se halla en el nodo maestro, ejemplo:
+    capacidad de 150 Gb. Preferencia: Los SSD M.2 NVMe están mucho más orientados hacia el
+    rendimiento
+
+#4 Conexion de Red
+
+    Cable Ethernet.
+    Asignaci[on de direccionamiento de red:
+        IP Red
+        IP Broadcast
+        Mascara
+
+#5 Middleware
+
+    SSH: brinda la posibilidad de conectarse desde el nodo maestro a esclavos.
+
+#6 Administrador de procesos
+
+    1) OpenMPD
+
+    MPD es un administrador de procesos compatible con MPI hasta la versión 1.2. MPD trata de evitar
+     el envío de procesos a los nodos esclavos, solo cuando el nodo maestro no es suficiente para
+     ejecutar un proceso, entonces es que MPD comienza a mandar tareas, pero lo hace hasta que el
+     siguiente nodo tampoco abastezca
+
+     2) Hydra
+
+     Hydra es un administrador de procesos compatible con MPI desde la versión 1.3. Hydra al
+     contrario de MPD trata de usar procesadores alejados al nodo maestro, tanto para reducir la
+     carga a este, como para tener mas núcleos activos y usar todos los periodos de clock para
+     realizar los cálculos en todos los núcleos Hydra es eficiente cuando los procesos no son muy
+     pesados y cuando se tiene una gran cantidad de datos.
+
+     3) SunPlex
+
+    Se puede elegir como instalar, configurar y administrar el sistema "SunPlex" desde varias
+    interfaces de usuario, así como realizar tareas de administración del sistema a través de la
+    interfaz gráfica de usuario (GUI) de SunPlex Manager o de la interfaz de línea de órdenes
+    documentada. Además de la interfaz de la línea de órdenes hay utilidades, que simplifican la
+    instalación seleccionada y las tareas de configuración. El sistema SunPlex también tiene un
+    módulo que se ejecuta como parte de Sun Management Center e incluye una
+     GUI para algunas tareas del clúster, y que está disponible sólo para usarlo en clústers basados
+      en plataformas SPARC.
+
+#7 Ambiente de programacion en paralela
+
+    Para poder ejecutar programas se necesita de un entorno, en nuestra investigación utilizamos tres diferentes.
+
+    1)   MPI
+
+    MPI15, es un estándar de paso de mensajes que define la sintaxis y la semántica de las funciones
+     de una librería en un lenguaje en específico, en el cual se diseñan programas que explotan a
+     los multiprocesadores o bien a un sistema multinúcleo. MPI tiene soporte para C, C++, C#,
+     Fortran, Ada, Python, OCaml, Java y código ensamblador.
+
+    2)    Octave
+
+    GNU Octave es un software libre enfocado a los cálculos matemáticos. Es el equivalente al
+    software privativo de Mathworks® MATLAB®. Este software ejecuta scripts que sean compatibles con
+     MATLAB®, es decir que es compatible con archivos de extensión .m, es un lenguaje interpretado.
+
+    3) Apache Spark
+
+    Despliegue de un cluster de Apache Spark en modo mánager/trabajador
+    Apache Spark es un marco de creación de clusters de código abierto para análisis de datos.
+    Oracle Cloud Infrastructure proporciona una plataforma fiable de alto rendimiento para ejecutar
+    y gestionar las aplicaciones Big Data basadas en Apache Spark.
+
+
+
+Links
+http://www.revistasbolivianas.ciencia.bo/scielo.php?lng=pt&pid=S1234-12342014000100004&script=sci_arttext
+https://docs.oracle.com/cd/E19263-01/817-6381/6mlp93ebd/index.html
+https://docs.oracle.com/cd/E19050-01/sun.cluster31/817-4259/6mjq1d4n1/index.html
