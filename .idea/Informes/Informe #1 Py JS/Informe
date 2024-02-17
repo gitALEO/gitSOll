@@ -1,12 +1,8 @@
-===============================================================================================================
+====================================================================================================
 •	Programación multi-procesador o multi-core con Python o Javascript
     o	Indicar si es ejecución sincrónica o asincrónica y asociar con teoría vista.
     o	Mostrar ejemplo práctico.
-•	Cómo implementar un cluster de computadoras en Windows o Linux.
-    o	Qué tecnologías y protocolos subyacentes se utilizan.
-•	Cómo diseñaría un cluster de computadoras en Windows o Linux.
-    o	Qué tecnologías, protocolos o lenguajes utilizaría.
-==================================================================================================================
+====================================================================================================
 
     “buscar como programar en multi-hilo o multi-core en python, o crear un programa en python de como implementarlo”
 
@@ -156,22 +152,36 @@ worker.postMessage(‘Hola de vuelta!’);
     Cómo implementar un cluster de computadoras en Linux
         Qué tecnologías y protocolos subyacentes se utilizan.
 
+    Que quiere el profe
+    Que le describa con dispositivos,
+
 Tecnologias de un cluster en Linux
-Linux tiene tres tipos de clusters de acuerdo a su tilidad:
+Linux tiene tres tipos de clusters de acuerdo a su utilidad:
 de alto rendimiento, de alta disponibilidad y de balanceo
 de carga
 
-    Alto Rendimiento
-
-
-
+Nosa vamos a enfocar en un cluster de Alta disponibilidad
     Alta Disponibilidad
 
+La alta disponibilidad es un sistema en clúster que ofrece fiabilidad, escalabilidad y
+ disponibilidad a servicios de producción crítica Las secciones a continuación proporcionan
+una descripción de los componentes y funciones de alta disponibilidad de alto nivel:
 
-
-    Balanceo de Carga
-
+Los clústeres de alta disponibilidad proporcionan alta disponibilidad de servicios mediante
+la eliminación de los puntos individuales de falla y la conmutación de servicios de un nodo
+de clúster a otro en caso de que un nodo sea inoperante. Generalmente, los servicios en un
+clúster de alta disponibilidad leen y escriben datos (a través de los sistemas de archivos
+de lectura y escritura montados). Así, un clúster de alta disponibilidad debe mantener la
+integridad de los datos cuando un nodo reciba el control del servicio desde otro nodo de clúster.
+ Las fallas de nodos en un clúster de alta disponibilidad no están visibles para los clientes
+ externos al clúster.
+ (Los clústeres de alta disponibilidad también se conocen como clústeres de conmutación.) La adición
+  de alta disponibilidad proporciona agrupamiento a través de su componente de administración de
+servicios de alta disponibilidad, rgmanager..
 
     **Protocolos
     TCP/IP/UDP
 
+    Fundamentos de un cluster
+    **Un clúster está compuesto por dos o más computadores
+    que trabajan juntos para ejecutar una tarea
