@@ -37,7 +37,7 @@
     MPD es un administrador de procesos compatible con MPI hasta la versión 1.2. MPD trata de evitar
      el envío de procesos a los nodos esclavos, solo cuando el nodo maestro no es suficiente para
      ejecutar un proceso, entonces es que MPD comienza a mandar tareas, pero lo hace hasta que el
-     siguiente nodo tampoco abastezca
+     siguiente nodo tampoco pueda abastecer
 
      2) Hydra
 
