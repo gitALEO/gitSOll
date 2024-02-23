@@ -82,7 +82,19 @@
     Oracle Cloud Infrastructure proporciona una plataforma fiable de alto rendimiento para ejecutar
     y gestionar las aplicaciones Big Data basadas en Apache Spark.
 
+Ventajas de implementar
+Facil Mantenimiento   ****Permite cambiar o reparar un equipo danado sin que afecte
+Migracion flexibl    ****Permite que el control de lo servicios, regresen al servidor sin notar\
+                        diferencia
+Inactividad nula    ****Permite que los usuarios siempre cuentenn con el servicio requerido sin notar
+                    la diferencia
 
+Conclusion
+    Un servicio cluster de alta disponibilidad, conformado por dispositivos fisicos, se conforma de
+    mas de dos nodos, en escencai, cuatro, tres, la cantidad considerada para brindar el servicio
+    ya que cada uno de estos nodos, va a requerir administrar, procesar y distribuir para disponer
+    el servicio en todo momento ya que si llega a fallar uno de los servidores, otro se encarga de
+    proveer el servicio, que en este caso se brinda pore el maestro.
 
 Links
 http://www.revistasbolivianas.ciencia.bo/scielo.php?lng=pt&pid=S1234-12342014000100004&script=sci_arttext
