@@ -1,0 +1,207 @@
+An introduction to real-time Linux
+
+Common misconceptions
+
+1.	A real time system only requires a real-time kernel.
+Real-time Linux Kernel alone does not guarantee real-time behavior. The kernel is just one component of a real-time system, and even most efficient RTOS can prove ineffective if latency issues exit elsewhere.
+2.	Real time equals optimized performance.
+•	Implies optimized performance.
+A real-time Linux Kernel does not focus on achieving optimized performance but rather on providing a deterministic response to external events and minimizing response latency.
+3.	Real time is always necessary.
+•	Real-time operating system is not always necessary.
+It is crucial to assess the actual consequences of missing a deadline and determine whether real-time requirements are warranted.
+
+Real-time Linux definitions.
+
+Real-time operating systems and real-time systems have been a subject of confusion and disagreement, making it essential to shed light on their precise meanings.
+•	Reat-time systems: Operate withing well-defined and fixed time boundaries. Failure occurs when these time constraints are not met and the system is unable to complete its real-time tasks withing the specified upper boundary.
+•	Real-time operating systems: Should be capable of responding to an event within a known and limited time frame. The response time of an application is the time interval between receiving a signal or stimulus, typical through a hardware interrupt in the Linux Kernel, and producing a result based on that input.
+
+Target verticals and applications
+
+Real-time Linux finds applications across a wide range of industries, including process automation and discrete automation.
+1.	HealthCare
+Dedicated devices like life-support medical equipment can require real-time processing. Operators expect computing systems to complete tasks within specified deadlines, as failure to meet these deadlines can have catastrophic consequences
+2.	Automotive
+Real-time systems find application in the automotive industry, particularly in 9 latency-sensitive scenarios where a missed deadline could have catastrophic consequences, such as car brakes failing to prevent a crash.
+
+Real-time Linux in the industrial sector.
+
+The term “Industry 4.0”. Describe the journey undertaken by industrial companies to digitally transform their value chains, both within their vertical operations and across their horizontal partners.7 This transformation entails digitizing essential functions and embracing connectivity throughout the industrial ecosystem.
+Traditional dedicated hardware to software-defined systems capable of delivering a diverse range of functionalities.
+1.	Bridging the gap with real-time Linux
+These networks connect various dedicated setups, each performing a specific (real-time) function. However, this legacy infrastructure poses barriers to data sharing and impedes two-way communication between devices.
+
+The automotive pyramid
+
+Industry Transformation
+
+1.	Real-time Linux in industrial environments.
+Real-time Linux operates at different levels within the industrial landscape, consolidating historically separate components into industrial PCs (IPCs)
+Moreover, determinism and real-time response are essential on the factory floor. Programmable Logic Controllers (PLCs) play a vital role in this transition, with industrial servers running real-time Linux for factory-level control.
+
+Real-time Linux in telco
+
+Real-time Linux can bring multiple advantages to the telecom sector, from processing real-time data, to ensuring ultra-low latency and providing enhanced security for critical infrastructure. Real-time Linux support for Radio Access Network (RAN) solutions can enable telecom operators to build efficient and high-performing 5G network architectures.
+1.	Meeting the transformation needs of 5G networks.
+As telecom operators.
+OpenRAN implementations play a vital role in the access network transformation.11 By using virtualised OpenRAN architectures and the latest advancements in Linux, mobile operators can deploy network functions with greater flexibility and efficient resource utilisation. Real-time LInux support for OpenRAN implementations like FlexRAN empowers telecom operators to build high-performance 5G networks with optimal performance and ultra-low latency.
+
+The role of preemption in real-time Linux 14
+
+“Preemption” and real-time scheduling lie at the core of real-time Linux.14 Without kernel preemption, there can be no real-time compute in Linux. Preemption consists of temporarily interrupting the current thread of execution so that a higher-priority event can be processed in a timely manner.
+
+Introduction to Linux kernel preemption 14
+
+The kernel space is the access-protected memory area reserved for executing the core of the OS in Kernel Mode, whereas user space is the system memory where user processes execute in User Mode. When a process executes in User Mode, it cannot directly access the kernel data structures or programs.
+Usually, a program executes in User Mode and switches to Kernel Mode only when requesting a service provided by the kernel. The Linux kernel then puts the program back in User Mode after satisfying the program’s request. To this end, each CPU model provides special instructions to switch from User Mode to Kernel Mode and vice versa.
+
+ User space to kernel space transition 14
+
+With no kernel preemption, like in the scenario depicted above, tasks can’t be interrupted once they start executing code in the kernel or a driver.
+
+Challenges to implementing preemption 16
+
+where two processes access the same data structures in critical sections, kernel preemption must be disabled.
+For real-time processing in Linux to be a reality, then, the kernel must be able to preempt the current thread of execution while placing checks at strategic locations.
+
+Preemption options in the Linux kernel 17
+
+PREEMPT_NONE 17
+
+The traditional Linux preemption model maximises the kernel’s raw processing power, irrespective of scheduling latencies. As the default behaviour in standard kernels, the no-preemption case for server workloads is optimised for overall throughput for systems making intense computations like a server. Whereas PREEMPT_NONE can still provide decent latencies, there are no guarantees, and occasional longer delays can occur, as interrupts, exceptions, and system calls in the kernel code are never preempted
+
+ PREEMPT_VOLUNTARY
+
+quicker application reactions to user input and targets desktop use. When operating in this mode, a low-priority process can “voluntarily” preempt itself even when executing a system call in kernel code.
+As a result, faster application reactions, even when under load, are perceived to run more smoothly.
+
+ PREEMPT
+
+mode enables voluntary preemption points in the Linux kernel. Furthermore, it makes kernel code preemptible when not executing in a critical section. With the addition of non critical-section preemption, higher-priority processes can interrupt execution threads in low-priority processes even when executing a system call in kernel mode and when not about to reach a natural preemption point.
+
+PREEMPT_RT 18
+
+is the name of the patchset that implements a priority scheduler and other supporting real-time mechanisms.19 PREEMPT_RT is nowadays the de-facto Linux real-time implementation but various mechanisms to bring real-time compute into the Linux kernel have been attempted through the years.
+PREEMPT_RT provides more deterministic response times by making the kernel more preemptible.
+The goal with PREEMPT_RT is to make all code running in kernel mode involuntarily preempted at any time by bringing most execution contexts under scheduler control.
+
+Real-time or low-latency kernel? 19
+
+t is specifically designed for applications with tight latency constraints. It aims to provide deterministic and predictable response times, making it suitable for critical systems where missed deadlines can have severe consequences.
+real-time performance can come at the expense of optimised throughput. Real-time Linux kernels prioritise minimising response latency to events, which may negatively affect throughput and resource utilisation.
+A low-latency kernel, for example low-latency Ubuntu, can reduce overhead while maintaining responsiveness.23 Low-latency Ubuntu efficiently handles real-world, low-latency and low-jitter workloads.
+
+ Using Real-time Ubuntu 21
+
+By minimising the non-preemptible critical sections in kernel code, the kernel is more preemptive than mainline. Real-time Ubuntu reduces kernel latencies as required by the most exacting workloads by prioritising critical tasks, and helps ensure a time-predictable task execution. By minimising response latency, Real-time Ubuntu aims to ensure time-sensitive applications receive prompt processing by providing deterministic responses to external events
+
+ How to enable Real-time Ubuntu 21
+
+A free tier is available for personal and small-scale commercial use, in line with the company’s community commitment and mission to ease open-source access and consumption.
+
+ Silicon-optimised Real-time Ubuntu 21
+
+Besides the OS, each layer of a stack must prioritise real-time workloads and allocate resources to deliver the low-latencies and tight time synchronisation needed to support deterministic processing.
+
+ Launching silicon-optimised Real-time Ubuntu on Intel SoCs 22
+
+ Empowering industrial systems with Intel® TCC, TSN and real-time Ubuntu 22
+
+TSN primarily focuses on the network space, ensuring that time-sensitive applications and workloads receive the necessary processing and network priorities. On the other hand, Intel® TCC is the equivalent solution designed specifically for the latest Intel processors. It optimises the entire System-on-Chip (SoC) to deliver the time-sensitive and deterministic needs of real-time workloads.
+enabling deterministic and low-latency communication over Ethernet, TSN ensures real-time data exchange between various components. Sensor readings and control signals can be prioritised and delivered with minimal delay, allowing coordination and the smooth functioning of production processes in a factory environment.
+
+ Deterministic and time-sensitive networking 23
+
+An integral part of industrial systems’ real-time capabilities is the connection to the network. TSN provides a network infrastructure capable of supporting both general workloads and real-time demands with deterministic and time-sensitive characteristics.
+
+Timeliness and temporal isolation 23
+
+Emulating real-world scenarios with real-time Ubuntu on Intel SoCs 24
+
+Without real-time optimisations in the system, best-effort workloads could interfere with real-time workloads and may lead to missed deadlines and non deterministic motor stepping.
+ Technical deep-dive in a real-time Linux OS 26
+Overall, the objective is to provide technically-minded readers and their development teams with a solid understanding of the engineering side and a reliable resource to turn to when encountering technical challenges
+
+Testing Canonical’s real-time kernel 26
+
+Canonical’s real-time Ubuntu relies on two primary test suites, rt-tests and stress-ng.36,37 rt-tests, maintained upstream in a Git repository, includes oslat and Cyclictest, the primary test suite upstream used to establish a baseline and determine if there is regression.38,39,40 Canonical routinely runs stress-ng every SRU cycle to check for regression and changes in kernel stability as well.41,42 The real-time Ubuntu kernel relies on extensive testing, often in combination. For example, stress-ng to put a load on the system and Cyclictest to measure its latency. Furthermore, Canonical also tests the real-time kernel via partner provided programs, like Intel’s Jitter Measurement Tool (provided as a package and not upstream)
+
+ The role of the scheduler in a real-time kernel 26
+
+Is a key component of a real-time system.
+
+Early Deadline First, Real-Time, and the Completely Fair Scheduler, are available, with different scheduling policies within each class,
+
+Early Deadline First in the kernel scheduler 27
+EDF’s scheduling policy, SCHED_DEADLINE, is deadline-based.43 Hence, after calling the schedule() function, the scheduler will run whichever task in the runqueue is closest to the deadline. Whereas in the POSIX (and RT class) approach, the highest-priority task gets the CPU, the runqueue’s process nearest its deadline is the next one for execution in EDF.
+
+Real-time in the kernel scheduler 27
+
+real-time Ubuntu uses the SCHED_RR policy. SCHED_ RR and SCHED_FIFO are both priority-based: the higher priority task will run on the processor by preempting the lower priority ones.
+The difference between the FIFO and RR schedulers is evident when two tasks share the same priority. In the FIFO scheduler, the task that arrived first will receive the processor, running until it goes to sleep. On the other hand, in the RR scheduler, the tasks with the same priority will share the processor in a round robin fashion
+
+Completely Fair Scheduler and Idle 28
+
+Assigning scheduling policies in code 28
+
+Assigning a sensible priority number is particularly important when working with the priority-based round-robin and FIFO policies. An application should never run at priority 90 or higher, as that is where critical kernel threads run. Similarly, watchdogs and migration run at priority 99. Running a task at priority 99 will likely result in the overall system locking up. Hence, one should strive to set a priority below the range of 50-99 when writing a program
+
+Locks in a real-time kernel 30
+
+Blocking Locks 30
+
+the tasks holding them can be put to sleep.
+These lock types are then converted to sleeping locks, e.g. local_lock (often used to protect CPU-specific critical data), spinlock_t and rwlock_t, when enabling preemption in a real-time Linux kernel.
+
+Spinning Locks 30
+
+the lock function may have to disable soft or hardware interrupts depending on the context.
+classical spin locks convert to sleepable spinlocks and are renamed raw_spinlocks
+
+Processes and threads 30
+
+PREEMPT_RT is not in mainline yet is that much of the locking within the kernel has to be updated to prevent priority inversion from occurring in a real-time environment.
+
+Unbounded priority inversion 30
+
+Let’s begin with priority inversion by looking at the diagram sketched below. Three tasks, L, M, and H, with varying priority levels, low, medium and high, are present in the kernel and about to contest for CPU access. 30 The low-priority task L runs until it takes a lock; in the diagram below, the blue bar turns red. After acquiring it, task L holds the lock and begins entering some critical sections within the kernel.
+Improving the flexibility to preempt tasks executing within the kernel would thus help guarantee an upper time boundary.
+
+Priority Inheritance 31
+
+Tuning a real-time kernel 32
+
+Tuning a real-time kernel is a complex endeavour, as each layer of a real-time stack must support deterministic processing.52 From the hardware to the kernel, and finally through to the application, every level can be a source of latency. A real-time kernel on its own will not necessarily make a system real-time, as even the most efficient Real Time Operating System (RTOS) can be useless in the presence of other latency sinks.
+The real-time developers architecting the overall hardware and software system are responsible for end-application tuning and optimisation of individual drivers for specific workloads.
+
+ Metrics and tools for tuning 33
+
+The three primary metrics to monitor when tuning a real-time kernel are jitter, average latency and max latency. The maximum latency is the key metric, and it is fundamental to know its value before running in production. A preemptive kernel aims to provide a deterministic response time to service events, with system failure in case of missed deadlines regardless of the system load.
+Jitter is the difference between average and max latency over time.
+
+BIOS option 34
+
+jitter, average latency and max latency as the primary metrics to monitor, this section lists some BIOS options to look for when tuning a real-time kernel.
+a real-time developer needs to review and consider these BIOS options when setting up a low-latency environment:
+ • SMIs
+• C state
+• Intel speed step
+ • Turbo mode
+ • VTx
+• VTd
+ • Hyperthreading
+Identifying and tweaking kernel config options are arguably the most time consuming, iterative activities to reduce latency when tuning. The following paragraphs will highlight and explain key tuning parameters and boot options.
+
+ Config options 34
+
+ Assigning threads to cores 36
+
+the POSIX function calls, or other software using the CPU affinity syscalls specify which CPUs to run drivers and real-time applications. Otherwise tasks will be assigned to any of the CPUs defined by
+
+Adding params to grub 37
+
+Tuning example 37
+
+Considerations after tuning
+Tuning is an iterative process, and it is advisable to tweak one parameter at a time while measuring the results. Depending on the environment and how stringent the latency requirements are, tuning and testing a real-time system to evaluate and check its performance can take multiple days and potentially weeks. Despite the effort, tuning can bring beneficial effects and tangible improvements in latency results.
