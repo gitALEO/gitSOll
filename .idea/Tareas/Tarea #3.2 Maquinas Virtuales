@@ -1,0 +1,79 @@
+14  Virtual Machines
+
+14.1 Virtual machine Concepts
+
+Una máquina virtual es una instancia virtualizada de un ordenador que puede realizar prácticamente sus mismas funciones, como ejecutar aplicaciones y sistemas operativos.
+
+Las máquinas virtuales se ejecutan en una máquina física y acceden a recursos de computación desde un software llamado hipervisor. El hipervisor abstrae los recursos de la máquina física en un grupo que se puede aprovisionar y distribuir según sea necesario para que varias máquinas virtuales se ejecuten en una sola máquina física.
+
+Cómo funcionan varias máquinas virtuales
+Es posible alojar varias máquinas virtuales en una máquina física (normalmente, en un servidor) y gestionarlas a través de software para máquinas virtuales. De este modo, puedes mejorar la flexibilidad de los recursos de computación (redes, almacenamiento y computación) para distribuirlos entre las máquinas virtuales según sea necesario y, así, mejorar la eficiencia general. Esta arquitectura proporciona los elementos básicos necesarios para los recursos virtualizados avanzados que utilizamos actualmente, incluidos los de cloud computing.
+
+¿Para qué se usan las máquinas virtuales?
+Las máquinas virtuales son los componentes básicos de los recursos de computación virtualizados y desempeñan un papel importante a la hora de crear aplicaciones, herramientas o entornos, ya sea para máquinas virtuales online o recursos on-premise. Estas son algunas de las funciones empresariales más comunes de las máquinas virtuales:
+Optimiza servidores
+Las máquinas virtuales se pueden configurar como servidores para alojar a otras máquinas virtuales. De este modo, las organizaciones pueden reducir la dispersión de recursos al concentrarlos en una sola máquina virtual.
+
+Crea entornos de desarrollo y pruebas
+Las máquinas virtuales pueden usarse como entornos aislados de desarrollo y pruebas que incluyen todas las funciones, pero no tienen un impacto en el resto de la infraestructura.
+
+Brinda asistencia a desarrolladores
+Es posible activar o desactivar, migrar y adaptar las máquinas virtuales para gozar de la máxima flexibilidad para el desarrollo.
+
+Habilita la migración de cargas de trabajo
+La flexibilidad y la portabilidad que proporcionan las máquinas virtuales son clave para incrementar la velocidad de las iniciativas de migración.
+
+Mejora la recuperación tras fallos y la continuidad empresarial
+La replicación de sistemas en entornos de la nube a través de máquinas virtuales puede proporcionar una capa adicional de seguridad y confianza. Además, los entornos en la nube también se pueden actualizar continuamente.
+
+Crea entornos híbridos
+Las máquinas virtuales ofrecen las bases para crear un entorno en la nube respaldado por otro entorno on-premise, lo que te proporciona una gran flexibilidad sin tener que abandonar los sistemas antiguos.
+
+Productos y servicios relacionados
+Compute Engine, la solución flexible de máquinas virtuales, ofrece una infraestructura de computación como máquinas virtuales predefinidas y personalizables. Está diseñado específicamente para acelerar la transformación a la nube.
+
+https://cloud.google.com/learn/what-is-a-virtual-machine?hl=es#:~:text=Una%20m%C3%A1quina%20virtual%20es%20una,desde%20un%20software%20llamado%20hipervisor.
+
+Hypervisor
+¿Qué son los hipervisores?
+Antes de que los hipervisores se generalizaran, la mayoría de las computadoras físicas sólo podían ejecutar un sistema operativo a la vez. Esto las hacía estables porque el hardware informático solo tenía que manejar solicitudes de ese sistema operativo. La desventaja de este enfoque era que desperdiciaba recursos ya que el sistema operativo no siempre podía usar toda la potencia de la computadora.
+
+Un hipervisor resuelve ese problema. Es una pequeña capa de software que permite que múltiples instancias de sistemas operativos se ejecuten una junto a la otra, compartiendo los mismos recursos de computación físicos. Este proceso se denomina virtualización, y las instancias del sistema operativo se denominan máquinas virtuales (VM): emulaciones de software de equipos físicos.
+
+El hipervisor, también conocido como monitor de máquina virtual (VMM), gestiona estas máquinas virtuales
+ mientras se ejecutan una al lado de otra.Separa las máquinas virtuales entre sí lógicamente, asignando a
+ cada una su propia porción de la potencia de computación, la memoria y el almacenamiento subyacentes.
+ Esto impide que las máquinas virtuales interfieran entre sí, de modo que si, por ejemplo, un sistema
+ operativo sufre un fallo o un problema de seguridad, los demás sobreviven.
+
+ Paravirtualizacion
+es un método que permite que el software que se ejecuta en un sistema virtual omita la interfaz virtual
+ y ejecute operaciones en el hardware real del sistema. En un sistema virtual estándar, el único programa que utiliza el hardware real del sistema es la interfaz virtual. El resto del software se ejecuta totalmente dentro del entorno virtual. Con la paravirtualización, hay formas en que el software incluido puede acceder a recursos reales en lugar de virtuales. Esto acelera ciertas funciones
+ sin sacrificar la potencia informática.
+
+Virtualizacino dee nrecursos de haredware
+
+Es el entorno virtualizado que dispone de su propio hardware de forma virtual, y esta formado por su propia instancia de un sistema operativo donde se ejecutan sus propias aplicaciones como si de un computador real se tratara. Podemos tener tantas máquinas virtuales de sistema como los recursos del servidor anfitrión nos lo permitan.
+
+Virtualizacino de contenedores
+Los contenedores virtualizan el sistema operativo para que la aplicación se pueda ejecutar de forma independiente en cualquier plataforma. Las máquinas virtuales van más allá y virtualizan máquinas físicas para que pueda usar los recursos de hardware de manera eficaz.
+los contenedores utilizan un motor de contenedores o un tiempo de ejecución de los contenedores. Este es el software que actúa como un agente intermediario entre los contenedores y el sistema operativo. Esto proporciona y administra los recursos de sistema que necesita la aplicación. Docker es el motor de contenedores de código abierto más usado.
+
+https://aws.amazon.com/es/compare/the-difference-between-containers-and-virtual-machines/#:~:text=Los%20contenedores%20virtualizan%20el%20sistema,de%20hardware%20de%20manera%20eficaz.
+
+grupos de control del kernel
+
+Kernel monolítico. Un kernel grande para todas las tareas. Es el único responsable de la gestión de la memoria y de los procesos, de la comunicación entre procesos y proporciona funciones de soporte de drivers y hardware. Los sistemas operativos que usan el kernel monolítico son Linux, OS X y Windows.
+Microkernel. El microkernel se ha diseñado intencionadamente de un tamaño pequeño para que en caso de fallo no paralice todo el sistema operativo. No obstante, para que pueda asumir las mismas funciones que un kernel grande, está dividido en varios módulos. Como ejemplo de aplicación solo existe el componente Mach de OS X, ya que hasta ahora no hay ningún sistema operativo con microkernel.
+Kernel híbrido. La combinación del kernel monolítico y el microkernel se denomina kernel híbrido. En este caso, el kernel grande se hace más compacto y modulable. Otras partes del kernel pueden cargarse dinámicamente. Esto ya ocurre en cierta medida en Linux y OS X.
+
+Grupo de contenerdores de kernel
+
+Los contenedores virtualizan el sistema operativo para que la aplicación se pueda ejecutar de forma independiente en cualquier plataforma. Las máquinas virtuales van más allá y virtualizan máquinas físicas para que pueda usar los recursos de hardware de manera eficaz.
+¿Cómo funcionan?
+La tecnología de los contenedores implica la creación de paquetes de software autosuficientes que funcionen de manera uniforme, independientemente de las máquinas en las que se ejecuten. Los desarrolladores de software crean e implementan imágenes de contenedores, es decir, archivos que contienen la información necesaria para ejecutar la aplicación. Las imágenes de contenedores son de solo lectura y el sistema de computación no las puede modificar.
+
+La tecnología de las máquinas virtuales implica la instalación de software de virtualización en un servidor o una computadora físicos. La computadora física es la computadora host y la máquina virtual es el invitado. Es posible configurar y actualizar los sistemas operativos invitados y sus aplicaciones según sea necesario sin afectar al sistema operativo host.
+
+https://www.ionos.es/digitalguide/servidores/know-how/que-es-el-kernel/
+
